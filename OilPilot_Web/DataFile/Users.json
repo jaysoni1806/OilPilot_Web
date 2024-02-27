@@ -1,0 +1,14 @@
+{
+"validLoginTest":[
+	{
+        "username": "jay.soni+manager@openxcell.com",
+	    "password": "QA@12345"
+      }
+     ],
+"loginWithInvalidCredentials":[
+	{
+         "username": "doe@abc.com",
+	     "password": "pwd4"
+      }
+     ]
+ }

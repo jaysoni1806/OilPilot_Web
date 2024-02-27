@@ -1,0 +1,82 @@
+public void clickOnAssets()
+{
+	if (dashboard.asset.isDisplayed()) {
+			utility.WaitUntilElementIsNotClickable(dashboard.asset, 10);
+			TestBase.log.info("Waiting until Assets manu is clickable.");
+			utility.WaitFor2Second();
+			utility.Submit(dashboard.asset);
+			TestBase.log.info("Click on Assets menu.");
+		} else {
+			throw new ApplicationException("Exception Occured", "Assets is not display.");
+		}
+}
+
+public void clickOnComapnyMenuItem(){
+	if (dashboard.list_Company.isDisplayed()) {
+			TestBase.log.info("Wait until Company manu is clickable.");
+			utility.WaitFor2Second();
+			utility.WaitUntilElementIsNotClickable(dashboard.list_Company, 10);
+			utility.Submit(dashboard.list_Company);
+			TestBase.log.info("Click on Company list item.");
+
+		} else {
+			throw new ApplicationException("Exception Occured", "Company Assets is not display.");
+		}
+}
+public void clickAddButtonAndVerifyCreateCompnayHalfCardIsPresentOrNot()
+{
+	utility.WaitUntilElementVisibiltyGone(progrssbasCompany, 10);
+	TestBase.log.info("Wait until loading company list.");
+
+	if(addBtton.isDisplayed()){
+		utility.Submit(addBtton);
+		TestBase.log.info("Click on Company Add button.");
+		
+		utility.WaitForASecond(popupAddCompany, 10);
+		TestBase.log.info("Add company half card is present.");
+	}else{
+		throw new ApplicationException("Exception Occured", "Add button is not Present or Not Clickable.");
+	}
+}
+
+
+public void enterCompanyName(String CmpName){
+	
+	if(inputCompanyName.isDisplayed()){
+	utility.ClearTextBox(inputCompanyName);
+	TestBase.log.info("Clear the Company text box.");
+
+	utility.SendValues(inputCompanyName, CmpName);
+	TestBase.log.info("Enter Company name.");
+	}else{
+		throw new ApplicationException("Exception Occured", "Add company input field is not present.");
+	}
+	
+}
+
+public void clickAddButtonForCreateNewCompany(){
+	
+	if(addCompny_SubmitButton.isDisplayed()){
+	utility.Submit(addCompny_SubmitButton);
+		TestBase.log.info("Click on Submit button.");
+	}else{
+		throw new ApplicationException("Exception Occured", "Submit button field is not present.");
+	}
+	
+}
+
+public void verifyTheCompanyIsCreatedOrnot(){
+	
+	utility.waitUntilToastPresent(dashboard.toastMessage);
+	TestBase.log.info("Waiting until success toast present.");
+	
+	if(dashboard.toastMessage.isDisplayed()){
+	Assert.assertEquals(dashboard.toastMessage.getText(), "We have successfully created the Company.");
+		//ExtentReportManager.test.log(Status.PASS, "'" + CmpName + "'" + " Company successfully created.");
+		TestBase.log.info("'" + CmpName + "'" + " Company successfully created.");
+		utility.WaitFor2Second();
+	}else{
+		throw new ApplicationException("Exception Occured", "Toast message is not present.");
+	}
+	
+}
