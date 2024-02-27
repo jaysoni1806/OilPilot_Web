@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>OilPilot_Web</groupId>
 	<artifactId>OilPilot_Web</artifactId>
-	<version>${project.name}v.1</version>
+	<version>OilPilot_Webv.1</version>
 	
 	<properties>
 
@@ -76,12 +76,29 @@
             <artifactId>jackson-databind</artifactId>
             <version>2.7.1</version>
         </dependency>
+        
+        <dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.28</version>
+		</dependency>
 
 
 </dependencies>
 
 	<build>
+		<pluginManagement>
 		<plugins>
+			<plugin>
+	          <artifactId>maven-clean-plugin</artifactId>
+	          <version>3.1.0</version>
+	        </plugin>
+	        
+	        <plugin>
+	          <artifactId>maven-resources-plugin</artifactId>
+	          <version>3.2.0</version>
+	        </plugin>
+			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
@@ -91,7 +108,43 @@
                         <target>1.8</target>
                 </configuration>
 			</plugin>
+			
+			<plugin>
+	          <artifactId>maven-surefire-plugin</artifactId>
+	          <version>3.0.0-M5</version>
+	          <configuration>
+	          	<suiteXmlFiles>
+	          		<suiteXmlFile>testng.xml</suiteXmlFile>
+	          	</suiteXmlFiles>
+	          </configuration>
+	        </plugin>
+	        
+	        <plugin>
+	          <artifactId>maven-jar-plugin</artifactId>
+	          <version>3.0.2</version>
+	        </plugin>
+	        
+	        <plugin>
+	          <artifactId>maven-install-plugin</artifactId>
+	          <version>3.0.0-M1</version>
+	        </plugin>
+	        
+	        <plugin>
+	          <artifactId>maven-deploy-plugin</artifactId>
+	          <version>3.0.0-M1</version>
+	        </plugin>
+	        
+	        <!-- site lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#site_Lifecycle -->
+	        <plugin>
+	          <artifactId>maven-site-plugin</artifactId>
+	          <version>3.9.1</version>
+	        </plugin>
+	        
+	        <plugin>
+	          <artifactId>maven-project-info-reports-plugin</artifactId>
+	          <version>3.1.2</version>
+	        </plugin>
 		</plugins>
-		<finalName>project name</finalName>
+		</pluginManagement>
 	</build>
 </project>
